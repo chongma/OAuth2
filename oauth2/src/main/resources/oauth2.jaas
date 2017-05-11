@@ -1,5 +1,0 @@
-oauth2 {
-    org.apache.openejb.core.security.jaas.PropertiesLoginModule required
-        UsersFile="users.properties"
-        GroupsFile="groups.properties";
-};
