@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui"
+	template="/WEB-INF/include/layout.xhtml">
+
+	<ui:define name="metadata">
+		<f:metadata>
+			<!-- <f:viewParam name="fileId" value="#{fileBean.fileId}" />
+			<f:viewAction action="#{fileBean.onload}" /> -->
+		</f:metadata>
+	</ui:define>
+
+	<ui:define name="pagehead">
+		<title><h:outputText value="OAuth2" /></title>
+	</ui:define>
+
+	<ui:define name="content">
+
+		<b:well>
+			<b:button outcome="admin/clients" value="Clients" iconAwesome="users" />
+		</b:well>
+
+	</ui:define>
+
+</ui:composition>

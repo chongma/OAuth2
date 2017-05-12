@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui">
+<f:view>
+
+	<ui:insert name="metadata" />
+
+	<h:head>
+		<ui:insert name="pagehead" />
+		<h:outputStylesheet library="oauth2" name="style/default.css" />
+	</h:head>
+
+	<!-- Add 50px padding top to the body for the navbar -->
+	<h:body style="padding-top: 50px; padding-bottom: 20px;">
+
+		<ui:include src="heading.xhtml" />
+
+		<b:container>
+
+			<ui:insert name="content">
+				<h:outputText value="MAIN CONTENT" />
+			</ui:insert>
+
+		</b:container>
+
+		<ui:include src="footer.xhtml" />
+
+	</h:body>
+
+</f:view>
+
+</html>
