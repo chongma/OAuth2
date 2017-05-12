@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui"
+	template="/WEB-INF/include/layout.xhtml">
+
+	<ui:define name="metadata">
+		<f:metadata>
+			<f:viewAction action="#{clientsBean.onload}" />
+		</f:metadata>
+	</ui:define>
+
+	<ui:define name="pagehead">
+		<title><h:outputText value="Client" /></title>
+	</ui:define>
+
+	<ui:define name="content">
+
+		<b:well>
+			<h:outputText value="Clients" />
+		</b:well>
+
+		<b:well>
+			<b:button outcome="client" value="Client" iconAwesome="plus" />
+		</b:well>
+
+		<b:dataTable var="client" value="#{clientsBean.clientList}">
+			<b:dataTableColumn label="Id">
+				<h:link outcome="client" value="#{client.clientId}">
+					<f:param name="applicationId" value="#{client.clientId}" />
+				</h:link>
+			</b:dataTableColumn>
+			<b:dataTableColumn value="#{client.applicationDescription}" />
+			<b:dataTableColumn value="#{client.applicationLogoUri}" />
+			<b:dataTableColumn value="#{client.applicationName}" />
+			<b:dataTableColumn value="#{client.applicationWebUri}" />
+		</b:dataTable>
+
+	</ui:define>
+
+</ui:composition>

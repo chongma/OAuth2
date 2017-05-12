@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui"
+	template="/WEB-INF/include/layout.xhtml">
+
+	<ui:define name="metadata">
+		<f:metadata>
+			<f:viewParam name="clientId" value="#{clientBean.clientId}" />
+			<f:viewAction action="#{clientBean.onload}" />
+		</f:metadata>
+	</ui:define>
+
+	<ui:define name="pagehead">
+		<title><h:outputText value="Client" /></title>
+	</ui:define>
+
+	<ui:define name="content">
+
+		<b:well>
+			<b:button outcome="clients" value="Clients" iconAwesome="users" />
+		</b:well>
+
+		<h:form>
+
+			<b:growl />
+
+			<b:inputText label="Id" value="#{clientBean.client.clientId}"
+				required="true" />
+			<b:inputText label="Description"
+				value="#{clientBean.client.applicationDescription}" required="true" />
+			<b:inputText label="Logo Uri"
+				value="#{clientBean.client.applicationLogoUri}" required="true" />
+			<b:inputText label="Name"
+				value="#{clientBean.client.applicationName}" required="true" />
+			<b:inputText label="Web Uri"
+				value="#{clientBean.client.applicationWebUri}" required="true" />
+			<b:inputText label="Client Ip Address"
+				value="#{clientBean.client.clientIpAddress}" />
+			<b:inputSecret label="Secret"
+				value="#{clientBean.client.clientSecret}" required="true" />
+			<b:selectBooleanCheckbox label="Confidential"
+				value="#{clientBean.client.confidential}" />
+			<b:inputText label="Home realm"
+				value="#{clientBean.client.homeRealm}" />
+
+			<b:well>
+				<b:commandButton action="#{clientBean.save}" value="Save"
+					iconAwesome="save">
+					<f:ajax execute="@form" render="@form" />
+				</b:commandButton>
+			</b:well>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

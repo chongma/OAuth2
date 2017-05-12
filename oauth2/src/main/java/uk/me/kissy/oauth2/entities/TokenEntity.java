@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-@Entity
+//@Entity
 public class TokenEntity {
 	@Id
 	private String id;

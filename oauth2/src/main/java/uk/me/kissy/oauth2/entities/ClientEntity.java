@@ -1,9 +1,12 @@
 package uk.me.kissy.oauth2.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
-@Entity
+//@Entity
 public class ClientEntity {
 	@Id
 	private String id;
@@ -11,6 +14,9 @@ public class ClientEntity {
 	private boolean confidential;
 	private String application;
 	private String webUri;
+
+//	@OneToMany
+	private List<TokenEntity> token;
 
 	public String getId() {
 		return id;
@@ -50,6 +56,14 @@ public class ClientEntity {
 
 	public void setWebUri(String webUri) {
 		this.webUri = webUri;
+	}
+
+	public List<TokenEntity> getToken() {
+		return token;
+	}
+
+	public void setToken(List<TokenEntity> token) {
+		this.token = token;
 	}
 
 }

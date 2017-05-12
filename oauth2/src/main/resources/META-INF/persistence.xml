@@ -3,8 +3,16 @@
 	xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="oauth2">
-		<class>uk.me.kissy.oauth2.entities.ClientEntity</class>
-		<class>uk.me.kissy.oauth2.entities.TokenEntity</class>
+		<class>org.apache.cxf.rs.security.oauth2.common.Client</class>
+		<class>org.apache.cxf.rs.security.oauth2.common.UserSubject</class>
+		<class>org.apache.cxf.rs.security.oauth2.grants.code.ServerAuthorizationCodeGrant</class>
+		<class>org.apache.cxf.rs.security.oauth2.grants.code.AuthorizationCodeGrant</class>
+		<class>org.apache.cxf.rs.security.oauth2.tokens.bearer.BearerAccessToken</class>
+		<class>org.apache.cxf.rs.security.oauth2.common.ServerAccessToken</class>
+		<class>org.apache.cxf.rs.security.oauth2.common.AccessToken</class>
+		<class>org.apache.cxf.rs.security.oauth2.common.OAuthPermission</class>
+		<class>org.apache.cxf.rs.security.oauth2.tokens.refresh.RefreshToken</class>
+		<class>org.apache.cxf.rs.security.oauth2.common.Permission</class>
 		<properties>
 			<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)" />
 		</properties>

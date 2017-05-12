@@ -12,8 +12,6 @@ import java.util.stream.Stream;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceUnit;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
@@ -32,35 +30,27 @@ import org.apache.cxf.rs.security.oauth2.common.UserSubject;
 import org.apache.cxf.rs.security.oauth2.grants.owner.ResourceOwnerGrantHandler;
 import org.apache.cxf.rs.security.oauth2.grants.owner.ResourceOwnerLoginHandler;
 import org.apache.cxf.rs.security.oauth2.grants.refresh.RefreshTokenGrantHandler;
-import org.apache.cxf.rs.security.oauth2.provider.JPAOAuthDataProvider;
 import org.apache.cxf.rs.security.oauth2.services.AccessTokenService;
+
+import uk.me.kissy.oauth2.dataProviders.CustomJPAOAuthDataProvider;
 
 @Path("token")
 @RequestScoped
 public class TokenResource {
 	private final AccessTokenService delegate = new AccessTokenService();
 
-	@PersistenceUnit(unitName = "oauth2")
-	private EntityManagerFactory entityManagerFactory;
-
 	@Inject
-	private JPAOAuthDataProvider provider;
+	private CustomJPAOAuthDataProvider dataProvider;
 
 	@Inject
 	private HttpServletRequest request;
 
 	@PostConstruct
 	private void setup() {
-		provider.setEntityManagerFactory(entityManagerFactory);
-		delegate.setDataProvider(provider);
+		delegate.setDataProvider(dataProvider);
 		Stream.of(new ResourceOwnerGrantHandler() {
 			{
-				setDataProvider(provider);
-				// setLoginHandler(new JAASResourceOwnerLoginHandler() {
-				// {
-				// setContextName("oauth2");
-				// }
-				// });
+				setDataProvider(dataProvider);
 				final ResourceOwnerLoginHandler loginHandler = (name, password) -> {
 					try {
 						request.login(name, password);
@@ -83,7 +73,7 @@ public class TokenResource {
 			}
 		}, new RefreshTokenGrantHandler() {
 			{
-				setDataProvider(provider);
+				setDataProvider(dataProvider);
 			}
 		}).forEach(delegate::setGrantHandler);
 	}
